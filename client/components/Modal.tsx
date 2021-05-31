@@ -9,6 +9,7 @@ const Modal = styled.div`
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 export default Modal;
