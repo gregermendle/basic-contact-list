@@ -24,6 +24,7 @@ const useFetch = <T>(url: string, options?: RequestInit) => {
   React.useEffect(() => {
     const subscription = Rx.from(fetch(url, options))
       .pipe(
+        tap(() => setResponse({ type: 'loading' })),
         mergeMap((x) => x.json()),
         tap((data) => setResponse({ type: 'success', data })),
         catchError((error, observable) => {

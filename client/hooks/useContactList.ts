@@ -1,131 +1,22 @@
 import * as React from 'react';
+import useFetch from './useFetch';
+import { IContact } from '../../types';
 
 const useContactList = () => {
-  return {
-    type: 'success',
-    data: [
-      {
-        name: 'Greg Jordan',
-        email: 'greg@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-      {
-        name: 'Bob George',
-        email: 'gjordan@studable.com',
-        address: {
-          city: 'Somerville',
-          state: 'Massachusetts',
-          country: 'USA',
-          zipCode: '02143',
-          addressLine1: '24 Linden Ave.',
-          addressLine2: 'APT 2',
-        },
-      },
-    ],
-  };
+  const response = useFetch<{ contactList: Array<IContact> }>(
+    'http://localhost:3000/contact-list'
+  );
+
+  console.log(response);
+
+  if (response.type === 'success') {
+    return {
+      type: 'success',
+      data: response.data?.contactList ?? [],
+    };
+  }
+
+  return response;
 };
 
 export default useContactList;

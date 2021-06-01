@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import useContactList from '../hooks/useContactList';
-import { IAddress } from '../types';
+import { IAddress } from '../../types';
 import List from './List';
 import ListItem from './ListItem';
 import Modal from './Modal';
@@ -33,10 +33,12 @@ const ContactsListModal: React.FunctionComponent<IProps> = ({
 }) => {
   if (contactsResponse.type === 'error') {
     console.log('error');
+    return null;
   }
 
   if (contactsResponse.type === 'loading') {
     console.log('loading');
+    return null;
   }
 
   return (
