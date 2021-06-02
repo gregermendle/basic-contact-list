@@ -83,14 +83,12 @@ const AddContactModal: React.FunctionComponent<IProps> = ({}) => {
         <TextField
           onChange={handleInputChange}
           name="name"
-          required
           placeholder="Name"
           value={inputs.name}
         />
         <TextField
           onChange={handleInputChange}
           name="email"
-          required
           placeholder="Email"
           value={inputs.email}
         />
@@ -98,21 +96,18 @@ const AddContactModal: React.FunctionComponent<IProps> = ({}) => {
         <TextField
           onChange={handleInputChange}
           name="addressLine1"
-          required
           placeholder="Address Line 1"
           value={inputs.addressLine1}
         />
         <TextField
           onChange={handleInputChange}
           name="addressLine2"
-          required
           placeholder="Address Line 2"
           value={inputs.addressLine2}
         />
         <TextField
           onChange={handleInputChange}
           name="city"
-          required
           placeholder="City"
           value={inputs.city}
         />
@@ -120,14 +115,12 @@ const AddContactModal: React.FunctionComponent<IProps> = ({}) => {
           <TextField
             onChange={handleInputChange}
             name="state"
-            required
             placeholder="State"
             value={inputs.state}
           />
           <TextField
             onChange={handleInputChange}
             name="zipCode"
-            required
             placeholder="Zip Code"
             value={inputs.zipCode}
           />
