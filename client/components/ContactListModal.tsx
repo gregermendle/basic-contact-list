@@ -8,9 +8,10 @@ import ModalTitle from './ModalTitle';
 import ModalActionButton from './ModalActionButton';
 import { useHistory } from 'react-router';
 import { IContact } from '../../types';
+import { Response } from '../hooks/types';
 
 interface IProps {
-  contactsResponse: ReturnType<typeof useContactList>;
+  contactsResponse: Response<Array<IContact>>;
 }
 
 const NoContactsMessage = styled.div`
@@ -21,7 +22,9 @@ const NoContactsMessage = styled.div`
 `;
 
 const formatAddress = (contact: IContact) =>
-  `${contact.addressLine1}, ${contact.addressLine2}, ${contact.city}, ${contact.state} ${contact.zipCode}`;
+  `${contact.addressLine1}, ${
+    contact.addressLine2 ? contact.addressLine2 + ' ,' : ''
+  } ${contact.city}, ${contact.state} ${contact.zipCode}`;
 
 const ContactListModal: React.FunctionComponent<IProps> = ({
   contactsResponse,

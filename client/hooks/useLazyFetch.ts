@@ -1,20 +1,5 @@
 import * as React from 'react';
-import * as Rx from 'rxjs';
-import { catchError, mergeMap, tap } from 'rxjs/operators';
-
-type Response<T> =
-  | {
-      type: 'loading';
-    }
-  | {
-      type: 'success';
-      data: T | null;
-    }
-  | {
-      type: 'error';
-      error: Error;
-      data?: T | null;
-    };
+import { Response } from './types';
 
 const useLazyFetch = <T>() => {
   const [fetchResponse, setResponse] = React.useState<Response<T>>({

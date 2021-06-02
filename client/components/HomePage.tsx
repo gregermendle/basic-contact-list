@@ -3,10 +3,15 @@ import Page from './Page';
 import ContactListModal from './ContactListModal';
 import AddContactModal from './AddContactModal';
 import useContactList from '../hooks/useContactList';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 const HomePage = () => {
-  const contactsResponse = useContactList();
+  const location = useLocation();
+  const [contactsResponse, refetch] = useContactList();
+
+  React.useEffect(() => {
+    refetch();
+  }, [location]);
 
   return (
     <Page>

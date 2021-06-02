@@ -1,19 +1,23 @@
 import useFetch from './useFetch';
 import { IContact } from '../../types';
+import { Response } from './types';
 
-const useContactList = () => {
-  const response = useFetch<{ contactList: Array<IContact> }>(
+const useContactList = (): [Response<Array<IContact>>, () => Promise<void>] => {
+  const [response, refetch] = useFetch<{ contactList: Array<IContact> }>(
     'http://localhost:3000/contact-list'
   );
 
   if (response.type === 'success') {
-    return {
-      type: 'success' as 'success',
-      data: response.data?.contactList ?? [],
-    };
+    return [
+      {
+        type: 'success',
+        data: response.data?.contactList ?? [],
+      },
+      refetch,
+    ];
   }
 
-  return response;
+  return [response, refetch];
 };
 
 export default useContactList;
