@@ -48,7 +48,7 @@ const ListItem: React.FunctionComponent<IProps> = ({
 }) => {
   return (
     <ListItemContainer>
-      <ListItemButton onClick={() => console.log('here')}>
+      <ListItemButton>
         <ListItemPrimary>{primaryText}</ListItemPrimary>
         <ListItemSecondary>{secondaryText}</ListItemSecondary>
         <ListItemTertiary>{tertiaryText}</ListItemTertiary>

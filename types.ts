@@ -1,10 +1,6 @@
 export interface IContact {
   name: string;
   email: string;
-  address: IAddress;
-}
-
-export interface IAddress {
   city: string;
   state: string;
   country: string;

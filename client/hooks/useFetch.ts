@@ -1,6 +1,4 @@
 import * as React from 'react';
-import * as Rx from 'rxjs';
-import { catchError, mergeMap, tap } from 'rxjs/operators';
 
 type Response<T> =
   | {
@@ -12,32 +10,35 @@ type Response<T> =
     }
   | {
       type: 'error';
+      data?: T | null;
       error: Error;
     };
 
 const useFetch = <T>(url: string, options?: RequestInit) => {
-  const [response, setResponse] = React.useState<Response<T>>({
+  const [fetchResponse, setResponse] = React.useState<Response<T>>({
     type: 'success',
     data: null,
   });
 
   React.useEffect(() => {
-    const subscription = Rx.from(fetch(url, options))
-      .pipe(
-        tap(() => setResponse({ type: 'loading' })),
-        mergeMap((x) => x.json()),
-        tap((data) => setResponse({ type: 'success', data })),
-        catchError((error, observable) => {
-          setResponse({ type: 'error', error });
-          return observable;
-        })
-      )
-      .subscribe();
+    const doFetch = async () => {
+      try {
+        setResponse({ type: 'loading' });
+        const response = await fetch(url, options);
+        const data = await response.json();
+        setResponse({ type: 'success', data });
+        if (data.formInputErrors || data.error) {
+          setResponse({ type: 'error', data, error: new Error() });
+        }
+      } catch (error) {
+        setResponse({ type: 'error', error });
+      }
+    };
 
-    return () => subscription.unsubscribe();
+    doFetch();
   }, []);
 
-  return response;
+  return fetchResponse;
 };
 
 export default useFetch;

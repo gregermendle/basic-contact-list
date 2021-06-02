@@ -1,4 +1,3 @@
-import * as React from 'react';
 import useFetch from './useFetch';
 import { IContact } from '../../types';
 
@@ -7,11 +6,9 @@ const useContactList = () => {
     'http://localhost:3000/contact-list'
   );
 
-  console.log(response);
-
   if (response.type === 'success') {
     return {
-      type: 'success',
+      type: 'success' as 'success',
       data: response.data?.contactList ?? [],
     };
   }
