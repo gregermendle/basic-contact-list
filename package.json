@@ -6,7 +6,7 @@
     "client:build": "parcel build ./client/index.html --dist-dir ./client/dist",
     "client:watch": "parcel watch ./client/index.html --dist-dir ./client/dist",
     "client:serve": "parcel ./client/index.html -p 3000",
-    "start": "ts-node ./server/app",
+    "start": "npm run client:build && ts-node ./server/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
